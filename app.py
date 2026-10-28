@@ -101,9 +101,11 @@ def poll_groupme():
                 for phrase in TRIGGER_PHRASES:
                     if phrase in text:
                         print(f"Match detected from {msg.get('name')}: '{phrase}' found in '{text}'")
+                        time.sleep(10)
                         send_user_message(phrase)
                         # Note: If both phrases are in the same message, this sends both.
                         # Add 'break' right below this line if you only want it to send one!
+                        break
 
 # Start the GroupMe polling loop in a background thread so Flask can run simultaneously
 listener_thread = threading.Thread(target=poll_groupme, daemon=True)
